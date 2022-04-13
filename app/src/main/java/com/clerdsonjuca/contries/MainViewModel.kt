@@ -6,7 +6,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-
+/**
+ * MvvM com Corrotines e Retrofit
+ * */
 class MainViewModel:ViewModel() {
     private val sevice = CountryService()
     private val _items = MutableLiveData<List<Country>>()
