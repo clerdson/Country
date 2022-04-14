@@ -1,25 +1,27 @@
 package com.clerdsonjuca.contries
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import android.app.Application
+import androidx.lifecycle.*
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
+
 /**
  * MvvM com Corrotines e Retrofit
  * */
-class MainViewModel:ViewModel() {
-    private val sevice = CountryService()
-    private val _items = MutableLiveData<List<Country>>()
-    val items:LiveData<List<Country>>
-    get() = _items
+@HiltViewModel
+class MainViewModel @Inject constructor(
+    private val repository: Repository,
+
+):ViewModel() {
+
+    var items = MutableLiveData<List<Country>>()
+
     fun fethcCountries(){
         viewModelScope.launch(Dispatchers.IO) {
-            val res = sevice.getCountries()
-            if (res.isSuccessful){
-                _items.postValue(res.body())
-            }
+           val response = repository.getContry()
+            items.postValue(response.body())
         }
     }
 }

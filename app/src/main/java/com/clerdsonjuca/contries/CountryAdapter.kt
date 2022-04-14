@@ -5,8 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import javax.inject.Inject
 
-class CountryAdapter(private val items:ArrayList<Country>)
+class CountryAdapter @Inject constructor(private val items:ArrayList<Country>)
     :RecyclerView.Adapter<CountryAdapter.ViewHolder>() {
     class ViewHolder(view: View):RecyclerView.ViewHolder(view) {
         private val countryName = view.findViewById<TextView>(R.id.countryName)
