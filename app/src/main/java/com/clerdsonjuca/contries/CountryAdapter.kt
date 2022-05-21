@@ -7,7 +7,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import javax.inject.Inject
 
-class CountryAdapter @Inject constructor(private val items:ArrayList<Country>)
+class CountryAdapter @Inject constructor(
+    private val items:ArrayList<Country>
+    )
     :RecyclerView.Adapter<CountryAdapter.ViewHolder>() {
     class ViewHolder(view: View):RecyclerView.ViewHolder(view) {
         private val countryName = view.findViewById<TextView>(R.id.countryName)
@@ -16,7 +18,7 @@ class CountryAdapter @Inject constructor(private val items:ArrayList<Country>)
         }
 
     }
-    fun update (country:List< Country>){
+    fun update (country: List<Country>){
         items.clear()
         items.addAll(country)
         notifyDataSetChanged()
